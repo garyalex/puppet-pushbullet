@@ -1,0 +1,14 @@
+{
+  "name": "garyalex-pushbullet",
+  "version": "0.0.1",
+  "author": "garyalex",
+  "summary": "This module installs pushbullet-bash scripts to send pushes from a server",
+  "license": "Apache 2.0",
+  "source": "https://github.com/garyalex/puppet-pushbullet",
+  "project_page": "https://github.com/garyalex/puppet-pushbullet",
+  "issues_url": "https://github.com/garyalex/puppet-pushbullet/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
