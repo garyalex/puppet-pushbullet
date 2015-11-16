@@ -42,14 +42,14 @@ class garyalex-pushbullet (
     ensure  => link,
     mode    => 0755,
     target  => "/usr/local/pushbullet/pushbullet",
-    require => Vpsrepo['/usr/local/pushbullet'],
+    require => vcsrepo['/usr/local/pushbullet'],
   }
 
   file { '/usr/local/bin/pbwrapper.sh':
     ensure  => link,
     mode    => 0755,
     target  => "/usr/local/pushbullet/pbwrapper.sh",
-    require => Vpsrepo['/usr/local/pushbullet'],
+    require => vcsrepo['/usr/local/pushbullet'],
   }
 }
 

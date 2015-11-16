@@ -8,7 +8,7 @@
   "project_page": "https://github.com/garyalex/puppet-pushbullet",
   "issues_url": "https://github.com/garyalex/puppet-pushbullet/issues",
   "dependencies": [
-    {"name":"puppetlabs-vpsrepo","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-vcsrepo","version_requirement":">= 1.0.0"}
   ]
 }
 

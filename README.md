@@ -41,15 +41,14 @@ Proxy support via curl works as well.
 
 ### Setup Requirements **OPTIONAL**
 
-- No dependencies 
+- Depends on [puppetlabs-vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo) 
+- Will install curl and git dependencies
 
 ### Beginning with pushbullet
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+- add module as above
+- get an apikey from [pushbullet.com](http://www.pushbullet.com)
+- set the apikey parameter when calling the module 
 
 ## Usage
 
