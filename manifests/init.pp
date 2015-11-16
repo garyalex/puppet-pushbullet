@@ -1,41 +1,55 @@
-# == Class: pushbullet
-#
-# Full description of class pushbullet here.
-#
-# === Parameters
-#
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
-#
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
-#
-# === Examples
-#
-#  class { 'pushbullet':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
-#
-# === Authors
-#
-# Author Name <author@domain.com>
-#
-# === Copyright
-#
-# Copyright 2015 Your name here, unless otherwise noted.
-#
-class pushbullet {
+class garyalex-pushbullet (
+    $gitrepo   = $garyalex-pushbullet::params::gitrepo,
+    $apikey    = $garyalex-pushbullet::params::apikey,
+    $proxy     = $garyalex-pushbullet::params::proxy,
+    $proxyuser = $garyalex-pushbullet::params::proxyuser,
+) inherits garyalex-pushbullet::params {
 
+  package { 'curl':
+    ensure   => installed,
+  }
 
+  vcsrepo { '/usr/local/pushbullet/':
+    ensure   => present,
+    provider => git,
+    source   => $gitrepo,
+    revision => 'master',
+    require  => Package['git'],
+  }
+
+  file { '/usr/local/etc/curlrc':
+    ensure  => present,
+    content => template('garyalex-pushbullet/curlrc.erb'),
+    mode    => 0644,
+    require => Package['curl'],
+  }
+
+  file { '/root/.config/pushbullet':
+    ensure  => present,
+    content => template('garyalex-pushbullet/pushbullet.erb'),
+    mode    => 0644,
+    require => File['/root/.config'],
+  }
+
+  file { '/root/.config':
+    ensure => directory,
+    owner  => root,
+    mode   => 755,
+    before => File['/root/.config/pushbullet']
+  }
+
+  file { '/usr/local/bin/pushbullet':
+    ensure  => link,
+    mode    => 0755,
+    target  => "/usr/local/pushbullet/pushbullet",
+    require => Vpsrepo['/usr/local/pushbullet'],
+  }
+
+  file { '/usr/local/bin/pbwrapper.sh':
+    ensure  => link,
+    mode    => 0755,
+    target  => "/usr/local/pushbullet/pbwrapper.sh",
+    require => Vpsrepo['/usr/local/pushbullet'],
+  }
 }
+

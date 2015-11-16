@@ -15,33 +15,33 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+- Puppet module to install [pushbullet-bash](https://github.com/Red5d/pushbullet-bash) plus my own wrapper
+- Send push notifications to your phone/browser using [PushBullet](https://www.pushbullet.com/) from your server
+    - Perfect for monitoring things
+    - Can send files and links as well 
+- Tested on Redhat / CentOS 6 
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+Using just bash and curl, and not requiring any fancy dependencies, pushbullet-bash can send anything
+from your server to your phone or web browser via PushBullet. 
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This makes monitoring and reporting easy on your server, as long as you have internet access.
+Proxy support via curl works as well.
 
 ## Setup
 
+- puppet module install garyalex-pushbullet
+
 ### What pushbullet affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* installs a clone of the repo into /usr/local/
+* Symlinks to the scripts are put into /usr/local/bin
+* curlrc and pushbullet config are set for root user
 
 ### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+- No dependencies 
 
 ### Beginning with pushbullet
 
@@ -53,27 +53,9 @@ for upgrading, you may wish to include an additional section here: Upgrading
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
 
-## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
-
-## Limitations
-
-This is where you list OS compatibility, version compatibility, etc.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+- Let me know if you want to contribute
 
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
